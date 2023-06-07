@@ -1,0 +1,10 @@
+main {
+  position: absolute;
+  top: 15vh;
+  height: 85vh;
+  width: 100vw;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  place-items: center;
+}

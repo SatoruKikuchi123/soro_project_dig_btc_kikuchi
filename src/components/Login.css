@@ -1,0 +1,81 @@
+.formContainer {
+  background: #98ddca;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin: 13px 0;
+}
+
+.formBox {
+  width: 70%;
+  height: 72vh;
+  max-width: 450px;
+  border: 1px solid #dfefef;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #fbf5f5;
+  box-shadow: 2px 12px 17px -7px #383838;
+  border-radius: 15px;
+}
+
+.uiForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50vh;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.formField input {
+  border: 1px solid grey;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.formField input:focus {
+  outline: none;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+button {
+  width: 100%;
+  margin-top: 0px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(69, 65, 65);
+  padding: 10px 30px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitButton {
+  background: #61add8;
+}
+.submitButton:hover {
+  background-color: #1b89d8;
+}
+.signUpButton {
+  background: #ffaaa7;
+}
+.signUpButton:hover {
+  background-color: #f58080;
+}
