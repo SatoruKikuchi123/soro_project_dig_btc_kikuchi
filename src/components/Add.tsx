@@ -7,7 +7,6 @@ export const Add = () => {
     item: "",
     quantity: 1,
     quantity_unit: "個/本/玉",
-    corner_name: "野菜",
   });
   const [, , , setLists, , , shop, setShop] = useContext(VariableContext);
 
@@ -30,17 +29,16 @@ export const Add = () => {
         uniquKey: uuidv4(),
         item: inputNewItem.item,
         isCompleted: false,
+        corner_name: "選択してください",
+        directions: 1,
         quantity: inputNewItem.quantity,
         quantity_unit: inputNewItem["quantity_unit"],
-        corner_name: inputNewItem["corner_name"],
-        // directions: inputNewItem.directions,
       },
     ]);
     setInputNewItem({
       item: "",
       quantity: 1,
       quantity_unit: "個/本/玉",
-      corner_name: "野菜",
     });
   };
 
@@ -77,27 +75,6 @@ export const Add = () => {
           <option value="L">L</option>
           <option value="Kg">Kg</option>
         </select>
-
-        <label htmlFor="売り場">売り場：</label>
-        <select
-          form="add"
-          name="corner_name"
-          onChange={(e) => handleChange(e)}
-          required
-        >
-          <option value="野菜">野菜</option>
-          <option value="肉">肉</option>
-          <option value="魚">魚</option>
-          <option value="乳製品">乳製品</option>
-        </select>
-        {/* <label htmlFor="順番">順番</label>
-        <input
-          name="directions"
-          type="number"
-          min={0}
-          value={inputNewItem["directions"]}
-          placeholder="順番"
-        /> */}
         <button type="submit">追加!</button>
       </form>
     </>

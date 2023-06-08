@@ -10,8 +10,20 @@ import React, { useState, useContext, useEffect } from "react";
 import "./List.css";
 import { VariableContext } from "../App";
 const List = () => {
-  const [, , lists, setLists, userData, setUserData, shop, setShop, shopTable] =
-    useContext(VariableContext);
+  const [
+    ,
+    ,
+    lists,
+    setLists,
+    userData,
+    setUserData,
+    shop,
+    setShop,
+    shopTable,
+    setShopTable,
+    itemReCornerTable,
+    setItemReCornerTable,
+  ] = useContext(VariableContext);
 
   const handleRemoveItem = (uniquKey: any) => {
     const newLists = lists.filter(
@@ -25,16 +37,6 @@ const List = () => {
     const list = newLists.find((list) => list.uniquKey === uniquKey);
     list.isCompleted = !list.isCompleted;
     setLists(newLists);
-
-    // const newLists = lists.map(
-    //   (list: { isCompleted: boolean }, itemIndex: any) => {
-    //     if (itemIndex === uniquKey) {
-    //       list.isCompleted = !list.isCompleted;
-    //     }
-    //     return list;
-    //   }
-    // );
-    // setLists(newLists);
   };
 
   const handleUpdateItem = (
@@ -56,8 +58,21 @@ const List = () => {
     setLists(newLists);
   };
 
+  //売り場付与
+  const cornerAdd = () => {
+    lists.map((list: any) => {
+      for (const e of itemReCornerTable) {
+        if (e["item_name"] === list["item"]) {
+          list["corner_name"] = e["corner_name"];
+        }
+      }
+      return list;
+    });
+    console.log("lists:", lists);
+  };
+  cornerAdd();
+
   //順番付与
-  // useEffect(() => {
   const directionAdd = () => {
     console.log(shop);
     lists.map((list: any) => {
@@ -68,13 +83,15 @@ const List = () => {
         ) {
           list["directions"] = e["directions"];
         }
+        // if (e["corner_name"] === "選択してください") {
+        //   list["directions"] = 1;
+        // }
       }
       return list;
     });
     console.log("lists:", lists);
   };
   directionAdd();
-  // }, []);
   //ソート
   const sortedList = lists.sort(function (
     a: { directions: number },
@@ -86,13 +103,19 @@ const List = () => {
   });
   console.log("sortedList:", sortedList);
 
+  //登録
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="content">
+    <form className="content" onSubmit={handleSubmit}>
       <ul className="shoppingColum">
         <li>買う物</li>
         <li>量</li>
         <li>売り場</li>
         <li>順番</li>
+        <button>保存</button>
       </ul>
       <ul className="topic">
         {lists.map((list: any) => (
@@ -134,6 +157,7 @@ const List = () => {
               value={`${list.corner_name}`}
               onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             >
+              <option value="選択してください">選択してください</option>
               <option value="野菜">野菜</option>
               <option value="肉">肉</option>
               <option value="魚">魚</option>

@@ -35,7 +35,8 @@ export const NewCreateShop = () => {
     setTem(newLists);
   };
   //登録
-  const handleSubmit = () => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
     setNewCreateFlag(false);
   };
   const handleInput = (e: any) => {
@@ -53,55 +54,51 @@ export const NewCreateShop = () => {
     return 0;
   });
   return (
-    <form className="content">
-      <ul className="shoppingColum">
-        <li>お店</li>
-        <li>売り場</li>
-        <li>順番</li>
-        <label htmlFor="登録するお店">登録するお店</label>
-        <input
-          name="shop_name"
-          type="text"
-          onChange={(e) => {
-            handleInput(e);
-          }}
-        />
-        <button
-          onClick={() => {
-            handleSubmit();
-          }}
-        >
-          登録
-        </button>
-        <button onClick={() => setNewCreateFlag(false)}>戻る</button>
-      </ul>
-      <ul className="topic">
-        {tem.map((row: any, index: number) => (
-          <li key={index} className="formData">
-            <input
-              name="shop_name"
-              type="text"
-              value={`${row.shop_name}`}
-              disabled
-            />
-            <input
-              name="corner_name"
-              value={`${row.corner_name}`}
-              disabled
-            ></input>
-            <select
-              name="directions"
-              value={`${row.directions}`}
-              onChange={(e) => handleUpdateItem(e, index)}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
-          </li>
-        ))}
-      </ul>
-    </form>
+    <>
+      <button onClick={() => setNewCreateFlag(false)}>戻る</button>
+      <form className="content" onSubmit={handleSubmit}>
+        <ul className="shoppingColum">
+          <li>お店</li>
+          <li>売り場</li>
+          <li>順番</li>
+          <label htmlFor="登録するお店">登録するお店</label>
+          <input
+            name="shop_name"
+            type="text"
+            onChange={(e) => {
+              handleInput(e);
+            }}
+          />
+          <button>登録</button>
+        </ul>
+        <ul className="topic">
+          {tem.map((row: any, index: number) => (
+            <li key={index} className="formData">
+              <input
+                name="shop_name"
+                type="text"
+                value={`${row.shop_name}`}
+                disabled
+              />
+              <input
+                name="corner_name"
+                value={`${row.corner_name}`}
+                disabled
+              ></input>
+              <select
+                name="directions"
+                value={`${row.directions}`}
+                onChange={(e) => handleUpdateItem(e, index)}
+              >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select>
+            </li>
+          ))}
+        </ul>
+      </form>
+    </>
   );
 };

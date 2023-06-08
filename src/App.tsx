@@ -38,8 +38,10 @@ type props = {
     setUserData: Function,
     shop: any,
     setShop: Function,
-    shopTable: any
-    // setShopTable: Function
+    shopTable: any,
+    setShopTable: Function,
+    itemReCornerTable: any,
+    setItemReCornerTable: Function
   ];
 };
 export const VariableContext = React.createContext<props["props"]>([
@@ -52,7 +54,9 @@ export const VariableContext = React.createContext<props["props"]>([
   [],
   () => {},
   [],
-  // () => {},
+  () => {},
+  [],
+  () => {},
 ]);
 
 export default function App() {
@@ -70,6 +74,16 @@ export default function App() {
     { shop_name: "イオン", corner_name: "魚", directions: 4 },
     { shop_name: "イオン", corner_name: "乳製品", directions: 3 },
   ]);
+  const [itemReCornerTable, setItemReCornerTable] = useState([
+    { item_name: "かぼちゃ", corner_name: "野菜" },
+    { item_name: "牛肉", corner_name: "肉" },
+    { item_name: "サンマ", corner_name: "魚" },
+    { item_name: "チーズ", corner_name: "乳製品" },
+    { item_name: "にんじん", corner_name: "野菜" },
+    { item_name: "鶏肉", corner_name: "肉" },
+    { item_name: "マグロ", corner_name: "魚" },
+    { item_name: "バター", corner_name: "乳製品" },
+  ]);
 
   return (
     <>
@@ -84,7 +98,9 @@ export default function App() {
           shop,
           setShop,
           shopTable,
-          // setShopTable,
+          setShopTable,
+          itemReCornerTable,
+          setItemReCornerTable,
         ]}
       >
         {!newCreateFlag ? (
