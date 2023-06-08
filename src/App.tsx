@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import List from "./components/List";
 import Login from "./components/Login";
+import { Add } from "./components/Add";
 const fetchURL =
   process.env.NODE_ENV === "production"
     ? "https://sataro-zamas.onrender.com"
     : "http://localhost:3333";
 
 type props = {
-  // list: {
+  // lists: {
   //   id: number;
   //   item: string;
   //   quantity: string;
@@ -29,8 +30,8 @@ type props = {
   props: [
     popup: boolean,
     setPopup: Function,
-    list: any,
-    setList: any,
+    lists: any,
+    setLists: Function,
     userData: props["userData"],
     setUserData: Function
   ];
@@ -45,32 +46,31 @@ export const VariableContext = React.createContext<props["props"]>([
 ]);
 
 export default function App() {
+  const initialState = [
+    {
+      item: "a",
+      isCompleted: false,
+    },
+    {
+      item: "b",
+      isCompleted: false,
+    },
+    {
+      item: "c",
+      isCompleted: false,
+    },
+  ];
   const [popup, setPopup] = useState(false);
-  const [list, setList] = useState([{ quantity_unit: "個/本/玉" }]);
+  const [lists, setLists] = useState([]);
   const [userData, setUserData] = useState([]);
   const [shop, setShop] = useState([]);
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     let postdata = await fetch(fetchURL + "/posted").then((e) => e.json());
-  //     setPostedArray(postdata);
-  //     let tagArray = postdata
-  //       .filter((e: any) => e.tag !== "")
-  //       .map((e: any) => e.tag); //;
-  //     setTagArrat(
-  //       tagArray.filter((e: any, ind: number) => tagArray.indexOf(e) === ind)
-  //     );
-  //     postdata = null;
-  //     tagArray = null;
-  //   };
-  //   getData();
-  // }, []);
 
   return (
     <>
       <VariableContext.Provider
-        value={[popup, setPopup, list, setList, userData, setUserData]}
+        value={[popup, setPopup, lists, setLists, userData, setUserData]}
       >
+        <Add />
         <List />
       </VariableContext.Provider>
     </>
