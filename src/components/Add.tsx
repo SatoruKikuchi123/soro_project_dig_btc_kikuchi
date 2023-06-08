@@ -2,8 +2,13 @@ import React, { useContext, useState } from "react";
 import { VariableContext } from "../App";
 
 export const Add = () => {
-  const [inputNewItem, setInputNewItem] = useState({ item: "", quantity: 1 });
-  const [, , , setLists, userData, setUserData] = useContext(VariableContext);
+  const [inputNewItem, setInputNewItem] = useState({
+    item: "",
+    quantity: 1,
+    quantity_unit: "個/本/玉",
+    corner_name: "野菜",
+  });
+  const [, , , setLists, , , shop, setShop] = useContext(VariableContext);
 
   const handleChange = (
     e:
@@ -24,10 +29,17 @@ export const Add = () => {
         item: inputNewItem.item,
         isCompleted: false,
         quantity: inputNewItem.quantity,
-        // quantity_unit: inputNewItem["quantity_unit"],
+        quantity_unit: inputNewItem["quantity_unit"],
+        corner_name: inputNewItem["corner_name"],
+        // directions: inputNewItem.directions,
       },
     ]);
-    setInputNewItem({ item: "", quantity: 1 });
+    setInputNewItem({
+      item: "",
+      quantity: 1,
+      quantity_unit: "個/本/玉",
+      corner_name: "野菜",
+    });
   };
 
   return (
@@ -41,6 +53,7 @@ export const Add = () => {
           onChange={(e) => handleChange(e)}
           required
         />
+        <label>量：</label>
         <input
           name="quantity"
           type="number"
@@ -50,10 +63,11 @@ export const Add = () => {
           onChange={(e) => handleChange(e)}
           required
         />
+
+        <label htmlFor="単位">単位：</label>
         <select
           form="add"
           name="quantity_unit"
-          //   value={inputNewItem["quantity_unit"]}
           onChange={(e) => handleChange(e)}
         >
           <option value="個/本/玉">個/本/玉</option>
@@ -61,6 +75,27 @@ export const Add = () => {
           <option value="L">L</option>
           <option value="Kg">Kg</option>
         </select>
+
+        <label htmlFor="売り場">売り場：</label>
+        <select
+          form="add"
+          name="corner_name"
+          onChange={(e) => handleChange(e)}
+          required
+        >
+          <option value="野菜">野菜</option>
+          <option value="肉">肉</option>
+          <option value="魚">魚</option>
+          <option value="乳製品">乳製品</option>
+        </select>
+        {/* <label htmlFor="順番">順番</label>
+        <input
+          name="directions"
+          type="number"
+          min={0}
+          value={inputNewItem["directions"]}
+          placeholder="順番"
+        /> */}
         <button type="submit">追加!</button>
       </form>
     </>

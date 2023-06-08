@@ -6,11 +6,11 @@
 //     ? "https://sataro-zamas.onrender.com"
 //     : "http://localhost:3333";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./List.css";
 import { VariableContext } from "../App";
 const List = () => {
-  const [, , lists, setLists, userData, setUserData] =
+  const [, , lists, setLists, userData, setUserData, shop, setShop] =
     useContext(VariableContext);
 
   const handleRemoveItem = (index: any) => {
@@ -32,7 +32,9 @@ const List = () => {
   };
 
   const handleUpdateItem = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>,
     index: any
   ) => {
     const { name, value } = e.target;
@@ -47,6 +49,47 @@ const List = () => {
     );
     setLists(newLists);
   };
+  const shopTable = [
+    { shop_name: "カネスエ", corner_name: "野菜", directions: 1 },
+    { shop_name: "カネスエ", corner_name: "肉", directions: 2 },
+    { shop_name: "カネスエ", corner_name: "魚", directions: 3 },
+    { shop_name: "カネスエ", corner_name: "乳製品", directions: 4 },
+    { shop_name: "イオン", corner_name: "野菜", directions: 2 },
+    { shop_name: "イオン", corner_name: "肉", directions: 1 },
+    { shop_name: "イオン", corner_name: "魚", directions: 4 },
+    { shop_name: "イオン", corner_name: "乳製品", directions: 3 },
+  ];
+  //順番付与
+  useEffect(() => {
+    const directionAdd = () => {
+      console.log(shop);
+      const newLists = lists.map((list: any) => {
+        for (const e of shopTable) {
+          if (
+            e["shop_name"] === shop &&
+            e["corner_name"] === list["corner_name"]
+          ) {
+            list["directions"] = e["directions"];
+          }
+        }
+        return list;
+      });
+      console.log("newLists:", newLists);
+      setLists(newLists);
+    };
+    directionAdd();
+  }, [setShop]);
+
+  //ソート
+  const sortedList = lists.sort(function (
+    a: { directions: number },
+    b: { directions: number }
+  ) {
+    if (a.directions > b.directions) return 1;
+    if (b.directions > a.directions) return -1;
+    return 0;
+  });
+  // console.log("sortedList:", sortedList);
 
   return (
     <form className="content">
@@ -54,6 +97,7 @@ const List = () => {
         <li>買う物</li>
         <li>量</li>
         <li>売り場</li>
+        <li>順番</li>
       </ul>
       <ul className="topic">
         {lists.map((list: any, index: number) => (
@@ -80,25 +124,33 @@ const List = () => {
             />
             <select
               name="quantity_unit"
-              onChange={(e) => {
-                const food = [...lists];
-                food[index]["quantity_unit"] = e.target.value;
-                setLists(food);
-              }}
+              disabled={list.isCompleted}
+              value={`${list.quantity_unit}`}
+              onChange={(e) => handleUpdateItem(e, index)}
             >
               <option value="個/本/玉">個/本/玉</option>
               <option value="パック/袋/缶">パック/袋/缶</option>
               <option value="L">L</option>
               <option value="Kg">Kg</option>
             </select>
+            <select
+              name="corner_name"
+              disabled={list.isCompleted}
+              value={`${list.corner_name}`}
+              onChange={(e) => handleUpdateItem(e, index)}
+            >
+              <option value="野菜">野菜</option>
+              <option value="肉">肉</option>
+              <option value="魚">魚</option>
+              <option value="乳製品">乳製品</option>
+            </select>
             <input
-              name="login_id"
+              name="directions"
               type="number"
-              onChange={(e) => {
-                const food = [...lists];
-                food[index]["login_id"] = e.target.value;
-                setLists(food);
-              }}
+              disabled={list.isCompleted}
+              min={0}
+              value={`${list.directions}`}
+              onChange={(e) => handleUpdateItem(e, index)}
             />
             <button onClick={() => handleRemoveItem(index)}>削除</button>
           </li>

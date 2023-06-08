@@ -3,6 +3,7 @@ import "./App.css";
 import List from "./components/List";
 import Login from "./components/Login";
 import { Add } from "./components/Add";
+import { ShopSort } from "./components/ShopSort";
 const fetchURL =
   process.env.NODE_ENV === "production"
     ? "https://sataro-zamas.onrender.com"
@@ -33,7 +34,9 @@ type props = {
     lists: any,
     setLists: Function,
     userData: props["userData"],
-    setUserData: Function
+    setUserData: Function,
+    shop: any,
+    setShop: Function
   ];
 };
 export const VariableContext = React.createContext<props["props"]>([
@@ -43,34 +46,32 @@ export const VariableContext = React.createContext<props["props"]>([
   () => {},
   [],
   () => {},
+  [],
+  () => {},
 ]);
 
 export default function App() {
-  const initialState = [
-    {
-      item: "a",
-      isCompleted: false,
-    },
-    {
-      item: "b",
-      isCompleted: false,
-    },
-    {
-      item: "c",
-      isCompleted: false,
-    },
-  ];
   const [popup, setPopup] = useState(false);
   const [lists, setLists] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [shop, setShop] = useState([]);
+  const [shop, setShop] = useState("");
 
   return (
     <>
       <VariableContext.Provider
-        value={[popup, setPopup, lists, setLists, userData, setUserData]}
+        value={[
+          popup,
+          setPopup,
+          lists,
+          setLists,
+          userData,
+          setUserData,
+          shop,
+          setShop,
+        ]}
       >
         <Add />
+        <ShopSort />
         <List />
       </VariableContext.Provider>
     </>
