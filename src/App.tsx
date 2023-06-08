@@ -4,6 +4,7 @@ import List from "./components/List";
 import Login from "./components/Login";
 import { Add } from "./components/Add";
 import { ShopSort } from "./components/Shop";
+import { NewCreateShop } from "./components/NewCreateShop";
 const fetchURL =
   process.env.NODE_ENV === "production"
     ? "https://sataro-zamas.onrender.com"
@@ -29,14 +30,16 @@ type props = {
     added_user_id: number;
   }[];
   props: [
-    popup: boolean,
-    setPopup: Function,
+    newCreateFlag: boolean,
+    setNewCreateFlag: Function,
     lists: any,
     setLists: Function,
     userData: props["userData"],
     setUserData: Function,
     shop: any,
-    setShop: Function
+    setShop: Function,
+    shopTable: any
+    // setShopTable: Function
   ];
 };
 export const VariableContext = React.createContext<props["props"]>([
@@ -48,31 +51,51 @@ export const VariableContext = React.createContext<props["props"]>([
   () => {},
   [],
   () => {},
+  [],
+  // () => {},
 ]);
 
 export default function App() {
-  const [popup, setPopup] = useState(false);
+  const [newCreateFlag, setNewCreateFlag] = useState(false);
   const [lists, setLists] = useState([]);
   const [userData, setUserData] = useState([]);
   const [shop, setShop] = useState("");
+  const [shopTable, setShopTable] = useState([
+    { shop_name: "カネスエ", corner_name: "野菜", directions: 1 },
+    { shop_name: "カネスエ", corner_name: "肉", directions: 2 },
+    { shop_name: "カネスエ", corner_name: "魚", directions: 3 },
+    { shop_name: "カネスエ", corner_name: "乳製品", directions: 4 },
+    { shop_name: "イオン", corner_name: "野菜", directions: 2 },
+    { shop_name: "イオン", corner_name: "肉", directions: 1 },
+    { shop_name: "イオン", corner_name: "魚", directions: 4 },
+    { shop_name: "イオン", corner_name: "乳製品", directions: 3 },
+  ]);
 
   return (
     <>
       <VariableContext.Provider
         value={[
-          popup,
-          setPopup,
+          newCreateFlag,
+          setNewCreateFlag,
           lists,
           setLists,
           userData,
           setUserData,
           shop,
           setShop,
+          shopTable,
+          // setShopTable,
         ]}
       >
-        <Add />
-        <ShopSort />
-        <List />
+        {!newCreateFlag ? (
+          <>
+            <Add />
+            <ShopSort />
+            <List />
+          </>
+        ) : (
+          <NewCreateShop />
+        )}
       </VariableContext.Provider>
     </>
   );
@@ -82,8 +105,8 @@ export default function App() {
 //   <>
 //     <VariableContext.Provider
 //       value={[
-//         popup,
-//         setPopup,
+//         newCreateFlag,
+//         setNewCreateFlag,
 //         postedArray,
 //         setPostedArray,
 //         tagArray,
@@ -97,7 +120,7 @@ export default function App() {
 //         <>
 //           <Header />
 //           <main>
-//             {popup && <Modal />}
+//             {newCreateFlag && <Modal />}
 //             <List />
 //           </main>
 //         </>

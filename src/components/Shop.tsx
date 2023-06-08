@@ -2,8 +2,16 @@ import React, { useContext, useEffect } from "react";
 import { VariableContext } from "../App";
 
 export const ShopSort = () => {
-  const [, , lists, setLists, userData, setUserData, shop, setShop] =
-    useContext(VariableContext);
+  const [
+    ,
+    setNewCreateFlag,
+    lists,
+    setLists,
+    userData,
+    setUserData,
+    shop,
+    setShop,
+  ] = useContext(VariableContext);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setShop(value);
@@ -17,7 +25,7 @@ export const ShopSort = () => {
         <option value="カネスエ">カネスエ</option>
         <option value="イオン">イオン</option>
       </select>
-      <button>お店追加</button>
+      <button onClick={() => setNewCreateFlag(true)}>お店追加</button>
     </div>
   );
 };

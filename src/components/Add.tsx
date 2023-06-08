@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { VariableContext } from "../App";
+import { v4 as uuidv4 } from "uuid";
 
 export const Add = () => {
   const [inputNewItem, setInputNewItem] = useState({
@@ -26,6 +27,7 @@ export const Add = () => {
     setLists((lists: any) => [
       ...lists,
       {
+        uniquKey: uuidv4(),
         item: inputNewItem.item,
         isCompleted: false,
         quantity: inputNewItem.quantity,

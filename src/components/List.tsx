@@ -10,37 +10,43 @@ import React, { useState, useContext, useEffect } from "react";
 import "./List.css";
 import { VariableContext } from "../App";
 const List = () => {
-  const [, , lists, setLists, userData, setUserData, shop, setShop] =
+  const [, , lists, setLists, userData, setUserData, shop, setShop, shopTable] =
     useContext(VariableContext);
 
-  const handleRemoveItem = (index: any) => {
-    const newLists = [...lists];
-    newLists.splice(index, 1);
+  const handleRemoveItem = (uniquKey: any) => {
+    const newLists = lists.filter(
+      (list: { uniquKey: any }) => list.uniquKey !== uniquKey
+    );
     setLists(newLists);
   };
 
-  const handleCompletedItem = (index: any) => {
-    const newLists = lists.map(
-      (list: { isCompleted: boolean }, itemIndex: any) => {
-        if (itemIndex === index) {
-          list.isCompleted = !list.isCompleted;
-        }
-        return list;
-      }
-    );
+  const handleCompletedItem = (uniquKey: any) => {
+    const newLists = [...lists];
+    const list = newLists.find((list) => list.uniquKey === uniquKey);
+    list.isCompleted = !list.isCompleted;
     setLists(newLists);
+
+    // const newLists = lists.map(
+    //   (list: { isCompleted: boolean }, itemIndex: any) => {
+    //     if (itemIndex === uniquKey) {
+    //       list.isCompleted = !list.isCompleted;
+    //     }
+    //     return list;
+    //   }
+    // );
+    // setLists(newLists);
   };
 
   const handleUpdateItem = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>,
-    index: any
+    uniquKey: any
   ) => {
     const { name, value } = e.target;
     const newLists = lists.map(
       (list: { [x: string]: string }, itemIndex: any) => {
-        if (itemIndex === index) {
+        if (list.uniquKey === uniquKey) {
           console.log(name, value);
           list[name] = value;
         }
@@ -50,16 +56,6 @@ const List = () => {
     setLists(newLists);
   };
 
-  const shopTable = [
-    { shop_name: "カネスエ", corner_name: "野菜", directions: 1 },
-    { shop_name: "カネスエ", corner_name: "肉", directions: 2 },
-    { shop_name: "カネスエ", corner_name: "魚", directions: 3 },
-    { shop_name: "カネスエ", corner_name: "乳製品", directions: 4 },
-    { shop_name: "イオン", corner_name: "野菜", directions: 2 },
-    { shop_name: "イオン", corner_name: "肉", directions: 1 },
-    { shop_name: "イオン", corner_name: "魚", directions: 4 },
-    { shop_name: "イオン", corner_name: "乳製品", directions: 3 },
-  ];
   //順番付与
   // useEffect(() => {
   const directionAdd = () => {
@@ -99,19 +95,19 @@ const List = () => {
         <li>順番</li>
       </ul>
       <ul className="topic">
-        {lists.map((list: any, index: number) => (
-          <li key={index} className="formData">
+        {lists.map((list: any) => (
+          <li key={list.uniquKey} className="formData">
             <input
               type="checkbox"
               checked={list.isCompleted}
-              onChange={() => handleCompletedItem(index)}
+              onChange={() => handleCompletedItem(list.uniquKey)}
             />
             <input
               name="item"
               type="text"
               disabled={list.isCompleted}
               value={`${list.item}`}
-              onChange={(e) => handleUpdateItem(e, index)}
+              onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             />
             <input
               name="quantity"
@@ -119,13 +115,13 @@ const List = () => {
               disabled={list.isCompleted}
               min={0}
               value={`${list.quantity}`}
-              onChange={(e) => handleUpdateItem(e, index)}
+              onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             />
             <select
               name="quantity_unit"
               disabled={list.isCompleted}
               value={`${list.quantity_unit}`}
-              onChange={(e) => handleUpdateItem(e, index)}
+              onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             >
               <option value="個/本/玉">個/本/玉</option>
               <option value="パック/袋/缶">パック/袋/缶</option>
@@ -136,7 +132,7 @@ const List = () => {
               name="corner_name"
               disabled={list.isCompleted}
               value={`${list.corner_name}`}
-              onChange={(e) => handleUpdateItem(e, index)}
+              onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             >
               <option value="野菜">野菜</option>
               <option value="肉">肉</option>
@@ -149,9 +145,11 @@ const List = () => {
               disabled={list.isCompleted}
               min={0}
               value={`${list.directions}`}
-              onChange={(e) => handleUpdateItem(e, index)}
+              onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             />
-            <button onClick={() => handleRemoveItem(index)}>削除</button>
+            <button onClick={(e) => handleRemoveItem(list.uniquKey)}>
+              削除
+            </button>
           </li>
         ))}
       </ul>
