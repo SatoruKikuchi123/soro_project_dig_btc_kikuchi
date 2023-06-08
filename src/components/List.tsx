@@ -49,6 +49,7 @@ const List = () => {
     );
     setLists(newLists);
   };
+
   const shopTable = [
     { shop_name: "カネスエ", corner_name: "野菜", directions: 1 },
     { shop_name: "カネスエ", corner_name: "肉", directions: 2 },
@@ -60,26 +61,24 @@ const List = () => {
     { shop_name: "イオン", corner_name: "乳製品", directions: 3 },
   ];
   //順番付与
-  useEffect(() => {
-    const directionAdd = () => {
-      console.log(shop);
-      const newLists = lists.map((list: any) => {
-        for (const e of shopTable) {
-          if (
-            e["shop_name"] === shop &&
-            e["corner_name"] === list["corner_name"]
-          ) {
-            list["directions"] = e["directions"];
-          }
+  // useEffect(() => {
+  const directionAdd = () => {
+    console.log(shop);
+    lists.map((list: any) => {
+      for (const e of shopTable) {
+        if (
+          e["shop_name"] === shop &&
+          e["corner_name"] === list["corner_name"]
+        ) {
+          list["directions"] = e["directions"];
         }
-        return list;
-      });
-      console.log("newLists:", newLists);
-      setLists(newLists);
-    };
-    directionAdd();
-  }, [setShop]);
-
+      }
+      return list;
+    });
+    console.log("lists:", lists);
+  };
+  directionAdd();
+  // }, []);
   //ソート
   const sortedList = lists.sort(function (
     a: { directions: number },
@@ -89,7 +88,7 @@ const List = () => {
     if (b.directions > a.directions) return -1;
     return 0;
   });
-  // console.log("sortedList:", sortedList);
+  console.log("sortedList:", sortedList);
 
   return (
     <form className="content">

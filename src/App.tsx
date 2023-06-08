@@ -3,7 +3,7 @@ import "./App.css";
 import List from "./components/List";
 import Login from "./components/Login";
 import { Add } from "./components/Add";
-import { ShopSort } from "./components/ShopSort";
+import { ShopSort } from "./components/Shop";
 const fetchURL =
   process.env.NODE_ENV === "production"
     ? "https://sataro-zamas.onrender.com"
