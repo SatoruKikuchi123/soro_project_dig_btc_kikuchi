@@ -80,7 +80,7 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "server": "nodemon server.js",
+    "server": "node server.js",
     "start": "node scripts/start.js",
     "build": "npm install && node scripts/build.js",
     "test": "npm install",
