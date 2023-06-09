@@ -83,8 +83,11 @@ export const NewCreateShop = () => {
           <li>お店</li>
           <li>売り場</li>
           <li>順番</li>
-          <label htmlFor="登録するお店">登録するお店</label>
+          <label id="label" htmlFor="登録するお店">
+            登録するお店
+          </label>
           <input
+            id="input1"
             name="shop_name"
             type="text"
             onChange={(e) => {
@@ -97,17 +100,20 @@ export const NewCreateShop = () => {
           {tem.map((row: any, index: number) => (
             <li key={index} className="formData">
               <input
+                id="input2"
                 name="shop_name"
                 type="text"
                 value={`${row.shop_name}`}
                 disabled
               />
               <input
+                id="input3"
                 name="corner_name"
                 value={`${row.corner_name}`}
                 disabled
               ></input>
               <select
+                id="input4"
                 name="directions"
                 value={`${row.directions}`}
                 onChange={(e) => handleUpdateItem(e, index)}

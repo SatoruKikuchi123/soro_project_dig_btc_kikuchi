@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { VariableContext } from "../App";
-
 export const ShopSort = () => {
   const [
     ,

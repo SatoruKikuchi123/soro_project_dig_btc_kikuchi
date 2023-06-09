@@ -3,95 +3,45 @@
   height: 100%;
 }
 
-.shoppingColum {
-  padding: 0;
-  display: flex;
-  position: sticky;
-  width: 100%;
-  top: 2vh;
-  margin-top: 2vh;
-  margin-bottom: 0vh;
-  text-align: center;
-}
-
-.shoppingColum > li {
-  text-decoration: underline;
-  list-style: none;
-  padding: 0.7% 0;
-  border-radius: 1em;
-  background-color: #ffd3b4;
-  font-weight: bold;
-}
-
-.shoppingColum > li:nth-child(1) {
-  margin-right: 0.5vw;
-  width: 32vw;
-}
-
-.shoppingColum > li:nth-child(2),
-.shoppingColum > li:nth-child(3) {
-  margin-right: 0.5vw;
-  width: 19vw;
-}
-
-.shoppingColum > li:nth-child(4) {
-  width: 19.5vw;
-}
-
-.topic {
-  padding: 0;
-}
-
-.topic > li {
-  list-style: none;
+.select1 {
+  font-size: 65%;
+  background-color: unset;
+  margin-right: 2vw;
+  width: 10vw;
+  height: 80%;
+  border: none;
   padding: 0 1vw;
   height: 6.5vh;
-  margin-bottom: 1%;
   display: flex;
   align-items: center;
 }
 
-.topic > li > input:nth-child(1) {
-  font-size: 80%;
-  margin-right: 3vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  width: 25.2vw;
-  height: 80%;
-  border-radius: 2em;
-}
-
-.topic > li > input:nth-child(2),
-.topic > li > input:nth-child(3) {
-  font-size: 80%;
-  font-weight: 100;
-  margin-right: 2.5vw;
-  width: 16.5vw;
-  height: 80%;
-  border-radius: 2em;
-  text-align: center;
-}
-
-.topic > li > input:nth-child(4) {
-  font-size: 75%;
-  margin-right: 0.3vw;
-  width: 8vw;
-  height: 80%;
-  border-radius: 2em;
-  text-align: center;
-}
-
-.topic > li > select {
+.select2 {
   font-size: 65%;
   background-color: unset;
   margin-right: 1vw;
-  width: 7vw;
+  width: 13vw;
   height: 80%;
   border: none;
+  padding: 0 1vw;
+  height: 6.5vh;
+  display: flex;
+  align-items: center;
+}
+
+.directions {
+  font-size: 80%;
+  font-weight: 100;
+  margin-right: 2.5vw;
+  margin-left: 2.5vw;
+  width: 5vw;
+  height: 80%;
+  border-radius: 2em;
+  text-align: center;
 }
 
 .topic > li:nth-child(odd) {
-  background-color: #ffd3b460;
+  background-color: #ffc7b460;
 }
 
 .addRow {
@@ -111,3 +61,69 @@
   transform: translate(0, 0);
   box-shadow: none;
 }
+#input1 {
+  /* font-size: 80%;
+  margin-right: 3vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  width: 8vw;
+  height: 100%; */
+  width: 20vw;
+  border-radius: 2em;
+  font-size: 80%;
+}
+#input2 {
+  font-size: 80%;
+  margin-right: 1vw;
+  margin-left: 6vw;
+  padding-left: 5vw;
+  padding-right: 10vw;
+  width: 10vw;
+  height: 100%;
+}
+#input3 {
+  font-size: 80%;
+  margin-right: 5vw;
+  padding-left: 1vw;
+  padding-right: 11vw;
+  width: 5vw;
+  height: 100%;
+}
+#input4 {
+  font-size: 100%;
+  background-color: unset;
+  margin-right: 1vw;
+  width: 8vw;
+  height: 80%;
+  border: none;
+  padding: 0 1vw;
+  height: 6.5vh;
+  display: flex;
+  align-items: center;
+}
+#label {
+  font-size: 80%;
+  margin-right: 0.5vw;
+  margin-left: 1vw;
+  margin-top: 2vh;
+  width: 12vw;
+  height: 80%;
+}
+
+/* button {
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  width: 20px;
+  margin: auto;
+  padding: 0.1rem 3rem;
+  font-weight: bold;
+  border: 2px solid #27acd9;
+  color: #27acd9;
+  transition: 0.5s;
+}
+button:hover {
+  color: #fff;
+  background: #27acd9;
+} */

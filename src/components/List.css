@@ -19,23 +19,28 @@
   list-style: none;
   padding: 0.7% 0;
   border-radius: 1em;
-  background-color: #ffd3b4;
+  background-color: #b4c7ff;
   font-weight: bold;
 }
 
 .shoppingColum > li:nth-child(1) {
-  margin-right: 0.5vw;
-  width: 32vw;
+  margin-right: 1vw;
+  margin-left: 9vw;
+  width: 26vw;
 }
 
-.shoppingColum > li:nth-child(2),
-.shoppingColum > li:nth-child(3) {
-  margin-right: 0.5vw;
+.shoppingColum > li:nth-child(2) {
+  margin-right: 1vw;
   width: 19vw;
+}
+.shoppingColum > li:nth-child(3) {
+  margin-right: 2vw;
+  width: 14vw;
 }
 
 .shoppingColum > li:nth-child(4) {
-  width: 19.5vw;
+  width: 10vw;
+  margin-right: 1vw;
 }
 
 .topic {
@@ -56,42 +61,68 @@
   margin-right: 3vw;
   padding-left: 2vw;
   padding-right: 2vw;
-  width: 25.2vw;
+  width: 5vw;
   height: 80%;
   border-radius: 2em;
 }
 
-.topic > li > input:nth-child(2),
+.topic > li > input:nth-child(2) {
+  font-size: 80%;
+  font-weight: 100;
+  margin-right: 2.5vw;
+  width: 25.5vw;
+  height: 80%;
+  border-radius: 2em;
+  text-align: center;
+}
 .topic > li > input:nth-child(3) {
   font-size: 80%;
   font-weight: 100;
   margin-right: 2.5vw;
-  width: 16.5vw;
+  width: 5vw;
   height: 80%;
   border-radius: 2em;
   text-align: center;
 }
-
-.topic > li > input:nth-child(4) {
-  font-size: 75%;
-  margin-right: 0.3vw;
-  width: 8vw;
+.select1 {
+  font-size: 65%;
+  background-color: unset;
+  margin-right: 2vw;
+  width: 10vw;
   height: 80%;
-  border-radius: 2em;
-  text-align: center;
+  border: none;
+  padding: 0 1vw;
+  height: 6.5vh;
+  display: flex;
+  align-items: center;
 }
 
-.topic > li > select {
+.select2 {
   font-size: 65%;
   background-color: unset;
   margin-right: 1vw;
-  width: 7vw;
+  width: 13vw;
   height: 80%;
   border: none;
+  padding: 0 1vw;
+  height: 6.5vh;
+  display: flex;
+  align-items: center;
+}
+
+.directions {
+  font-size: 80%;
+  font-weight: 100;
+  margin-right: 2.5vw;
+  margin-left: 2.5vw;
+  width: 5vw;
+  height: 80%;
+  border-radius: 2em;
+  text-align: center;
 }
 
 .topic > li:nth-child(odd) {
-  background-color: #ffd3b460;
+  background-color: #ffc7b460;
 }
 
 .addRow {
@@ -111,3 +142,39 @@
   transform: translate(0, 0);
   box-shadow: none;
 }
+.input1 {
+  /* font-size: 80%;
+  margin-right: 3vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  width: 8vw;
+  height: 100%; */
+  width: 20vw;
+  border-radius: 2em;
+}
+/* .input2 {
+  font-size: 80%;
+  margin-right: 3vw;
+  padding-left: 2vw;
+  padding-right: 20vw;
+  width: 80vw;
+  height: 100%;
+} */
+
+/* button {
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  width: 20px;
+  margin: auto;
+  padding: 0.1rem 3rem;
+  font-weight: bold;
+  border: 2px solid #27acd9;
+  color: #27acd9;
+  transition: 0.5s;
+}
+button:hover {
+  color: #fff;
+  background: #27acd9;
+} */

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./List.css";
 import { VariableContext } from "../App";
+
 const fetchURL =
   process.env.NODE_ENV === "production"
     ? "https://kjk.onrender.com"
@@ -150,6 +151,7 @@ const List = () => {
               onChange={(e) => handleUpdateItem(e, list.uniquKey)}
             />
             <select
+              className="select1"
               name="quantity_unit"
               disabled={list.isCompleted}
               value={`${list.quantity_unit}`}
@@ -161,6 +163,7 @@ const List = () => {
               <option value="Kg">Kg</option>
             </select>
             <select
+              className="select2"
               name="corner_name"
               disabled={list.isCompleted}
               value={`${list.corner_name}`}
@@ -179,6 +182,7 @@ const List = () => {
               <option value="その他">その他</option>
             </select>
             <input
+              className="directions"
               name="directions"
               type="number"
               disabled={list.isCompleted}

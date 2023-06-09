@@ -90,7 +90,6 @@
     "back": "npx knex migrate:rollback --knexfile src/db/knexfile.js",
     "seed": "npx knex seed:run --knexfile src/db/knexfile.js",
     "seed-make": "npx knex seed:make --knexfile src/db/knexfile.js",
-    "rend-build": "npm install && npm run test",
     "rend-start": "npm run server"
   },
   "eslintConfig": {
