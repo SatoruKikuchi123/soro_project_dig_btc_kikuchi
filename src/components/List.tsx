@@ -3,7 +3,7 @@ import "./List.css";
 import { VariableContext } from "../App";
 const fetchURL =
   process.env.NODE_ENV === "production"
-    ? "https://sataro-zamas.onrender.com"
+    ? "https://kjk.onrender.com"
     : "http://localhost:3333";
 const List = () => {
   const [

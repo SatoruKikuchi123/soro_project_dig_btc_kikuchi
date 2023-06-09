@@ -3,7 +3,7 @@ import { VariableContext } from "../App";
 import "./NewCreateShop.css";
 const fetchURL =
   process.env.NODE_ENV === "production"
-    ? "https://sataro-zamas.onrender.com"
+    ? "https://kjk.onrender.com"
     : "http://localhost:3333";
 
 export const NewCreateShop = () => {

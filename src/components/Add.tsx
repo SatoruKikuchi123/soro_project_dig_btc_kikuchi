@@ -3,7 +3,7 @@ import { VariableContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
 const fetchURL =
   process.env.NODE_ENV === "production"
-    ? "https://sataro-zamas.onrender.com"
+    ? "https://kjk.onrender.com"
     : "http://localhost:3333";
 
 export const Add = () => {

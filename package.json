@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "homepage": "https://zamas.onrender.com",
+  "homepage": "https://kjk.onrender.com",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
@@ -82,7 +82,7 @@
   "scripts": {
     "server": "node server.js",
     "start": "node scripts/start.js",
-    "build": "npm install && node scripts/build.js",
+    "build": "npm install && node scripts/build.js && npm run migrate-down && npm run migrate && npm run seed",
     "test": "npm install",
     "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.js",
     "migrate-down": "npx knex migrate:down --knexfile src/db/knexfile.js",

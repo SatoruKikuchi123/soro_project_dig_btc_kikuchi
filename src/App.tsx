@@ -6,7 +6,7 @@ import { ShopSort } from "./components/Shop";
 import { NewCreateShop } from "./components/NewCreateShop";
 const fetchURL =
   process.env.NODE_ENV === "production"
-    ? "https://sataro-zamas.onrender.com"
+    ? "https://kjk.onrender.com"
     : "http://localhost:3333";
 
 type props = {
