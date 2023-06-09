@@ -16,7 +16,6 @@ type props = {
   //   item: string;
   //   quantity: string;
   //   quantity_unit: string;
-  //   login_id: string;
   // }[];
   userData: {
     user_id: number;
@@ -40,8 +39,8 @@ type props = {
     setShop: Function,
     shopTable: any,
     setShopTable: Function,
-    itemReCornerTable: any,
-    setItemReCornerTable: Function
+    items: any,
+    setItems: Function
   ];
 };
 export const VariableContext = React.createContext<props["props"]>([
@@ -63,27 +62,31 @@ export default function App() {
   const [newCreateFlag, setNewCreateFlag] = useState(false);
   const [lists, setLists] = useState([]);
   const [userData, setUserData] = useState([]);
-  const [shop, setShop] = useState("");
-  const [shopTable, setShopTable] = useState([
-    { shop_name: "カネスエ", corner_name: "野菜", directions: 1 },
-    { shop_name: "カネスエ", corner_name: "肉", directions: 2 },
-    { shop_name: "カネスエ", corner_name: "魚", directions: 3 },
-    { shop_name: "カネスエ", corner_name: "乳製品", directions: 4 },
-    { shop_name: "イオン", corner_name: "野菜", directions: 2 },
-    { shop_name: "イオン", corner_name: "肉", directions: 1 },
-    { shop_name: "イオン", corner_name: "魚", directions: 4 },
-    { shop_name: "イオン", corner_name: "乳製品", directions: 3 },
-  ]);
-  const [itemReCornerTable, setItemReCornerTable] = useState([
-    { item_name: "かぼちゃ", corner_name: "野菜" },
-    { item_name: "牛肉", corner_name: "肉" },
-    { item_name: "サンマ", corner_name: "魚" },
-    { item_name: "チーズ", corner_name: "乳製品" },
-    { item_name: "にんじん", corner_name: "野菜" },
-    { item_name: "鶏肉", corner_name: "肉" },
-    { item_name: "マグロ", corner_name: "魚" },
-    { item_name: "バター", corner_name: "乳製品" },
-  ]);
+  const [shop, setShop] = useState([]);
+  const [shopTable, setShopTable] = useState([]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const getLists = async () => {
+      const ListsTable = await fetch(fetchURL + "/lists").then((e) => e.json());
+      setLists(ListsTable);
+    };
+    const getShop = async () => {
+      const shopTb = await fetch(fetchURL + "/shops").then((e) => e.json());
+      setShopTable(shopTb);
+    };
+    const getItems = async () => {
+      const itemsTable = await fetch(fetchURL + "/items").then((e) => e.json());
+      setItems(itemsTable);
+    };
+
+    getLists();
+    getShop();
+    getItems();
+  }, []);
+  // console.log("lists", lists);
+  console.log("shopTable", shopTable);
+  // console.log("items", items);
 
   return (
     <>
@@ -99,8 +102,8 @@ export default function App() {
           setShop,
           shopTable,
           setShopTable,
-          itemReCornerTable,
-          setItemReCornerTable,
+          items,
+          setItems,
         ]}
       >
         {!newCreateFlag ? (

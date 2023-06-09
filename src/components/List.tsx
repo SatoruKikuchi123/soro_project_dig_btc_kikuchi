@@ -1,14 +1,10 @@
-// import React, { useContext } from "react";
-// import "./List.css";
-// import { VariableContext } from "../App";
-// const fetchURL =
-//   process.env.NODE_ENV === "production"
-//     ? "https://sataro-zamas.onrender.com"
-//     : "http://localhost:3333";
-
 import React, { useState, useContext, useEffect } from "react";
 import "./List.css";
 import { VariableContext } from "../App";
+const fetchURL =
+  process.env.NODE_ENV === "production"
+    ? "https://sataro-zamas.onrender.com"
+    : "http://localhost:3333";
 const List = () => {
   const [
     ,
@@ -21,11 +17,18 @@ const List = () => {
     setShop,
     shopTable,
     setShopTable,
-    itemReCornerTable,
-    setItemReCornerTable,
+    items,
+    setItems,
   ] = useContext(VariableContext);
 
   const handleRemoveItem = (uniquKey: any) => {
+    console.log("??????????????", uniquKey);
+    const getData = async () => {
+      const response = await fetch(`${fetchURL}/lists/del/${uniquKey}`).then(
+        (e) => e.json()
+      );
+    };
+    getData();
     const newLists = lists.filter(
       (list: { uniquKey: any }) => list.uniquKey !== uniquKey
     );
@@ -61,7 +64,7 @@ const List = () => {
   //売り場付与
   const cornerAdd = () => {
     lists.map((list: any) => {
-      for (const e of itemReCornerTable) {
+      for (const e of items) {
         if (e["item_name"] === list["item"]) {
           list["corner_name"] = e["corner_name"];
         }
@@ -74,6 +77,8 @@ const List = () => {
 
   //順番付与
   const directionAdd = () => {
+    console.log("shopTable", shopTable);
+
     console.log(shop);
     lists.map((list: any) => {
       for (const e of shopTable) {
@@ -83,9 +88,6 @@ const List = () => {
         ) {
           list["directions"] = e["directions"];
         }
-        // if (e["corner_name"] === "選択してください") {
-        //   list["directions"] = 1;
-        // }
       }
       return list;
     });
@@ -103,9 +105,17 @@ const List = () => {
   });
   console.log("sortedList:", sortedList);
 
-  //登録
+  //更新
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    const getData = async () => {
+      const response = await fetch(fetchURL + "/lists/put", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lists),
+      }).then((e) => e.json());
+    };
+    getData();
   };
 
   return (
@@ -162,6 +172,12 @@ const List = () => {
               <option value="肉">肉</option>
               <option value="魚">魚</option>
               <option value="乳製品">乳製品</option>
+              <option value="冷凍">冷凍</option>
+              <option value="パン">パン</option>
+              <option value="惣菜">惣菜</option>
+              <option value="お菓子">お菓子</option>
+              <option value="文房具">文房具</option>
+              <option value="その他">その他</option>
             </select>
             <input
               name="directions"

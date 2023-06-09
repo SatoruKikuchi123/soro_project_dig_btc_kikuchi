@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { VariableContext } from "../App";
 import "./NewCreateShop.css";
+const fetchURL =
+  process.env.NODE_ENV === "production"
+    ? "https://sataro-zamas.onrender.com"
+    : "http://localhost:3333";
 
 export const NewCreateShop = () => {
   const [
@@ -13,14 +17,23 @@ export const NewCreateShop = () => {
     shop,
     setShop,
     shopTable,
+    setShopTable,
+    items,
+    setItems,
   ] = useContext(VariableContext);
 
   const [input, setInput] = useState("");
   const [tem, setTem] = useState([
     { shop_name: "", corner_name: "野菜", directions: 1 },
-    { shop_name: "", corner_name: "肉", directions: 1 },
-    { shop_name: "", corner_name: "魚", directions: 1 },
-    { shop_name: "", corner_name: "乳製品", directions: 1 },
+    { shop_name: "", corner_name: "肉", directions: 2 },
+    { shop_name: "", corner_name: "魚", directions: 3 },
+    { shop_name: "", corner_name: "乳製品", directions: 4 },
+    { shop_name: "", corner_name: "冷凍", directions: 5 },
+    { shop_name: "", corner_name: "パン", directions: 6 },
+    { shop_name: "", corner_name: "惣菜", directions: 7 },
+    { shop_name: "", corner_name: "お菓子", directions: 8 },
+    { shop_name: "", corner_name: "文房具", directions: 9 },
+    { shop_name: "", corner_name: "その他", directions: 10 },
   ]);
 
   const handleUpdateItem = (e: any, index: any) => {
@@ -33,11 +46,6 @@ export const NewCreateShop = () => {
       return row;
     });
     setTem(newLists);
-  };
-  //登録
-  const handleSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    setNewCreateFlag(false);
   };
   const handleInput = (e: any) => {
     setInput(e.target.value);
@@ -53,6 +61,20 @@ export const NewCreateShop = () => {
     if (b.directions > a.directions) return -1;
     return 0;
   });
+  //登録
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const getData = async () => {
+      const response = await fetch(fetchURL + "/shops", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tem),
+      }).then((e) => e.json());
+      setShopTable(response);
+    };
+    getData();
+    setNewCreateFlag(false);
+  };
   return (
     <>
       <button onClick={() => setNewCreateFlag(false)}>戻る</button>
@@ -90,10 +112,16 @@ export const NewCreateShop = () => {
                 value={`${row.directions}`}
                 onChange={(e) => handleUpdateItem(e, index)}
               >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
+                <option value={6}>6</option>
+                <option value={7}>7</option>
+                <option value={8}>8</option>
+                <option value={9}>9</option>
+                <option value={10}>10</option>
               </select>
             </li>
           ))}

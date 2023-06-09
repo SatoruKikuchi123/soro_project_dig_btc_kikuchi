@@ -1,6 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { VariableContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
+const fetchURL =
+  process.env.NODE_ENV === "production"
+    ? "https://sataro-zamas.onrender.com"
+    : "http://localhost:3333";
 
 export const Add = () => {
   const [inputNewItem, setInputNewItem] = useState({
@@ -8,7 +12,8 @@ export const Add = () => {
     quantity: 1,
     quantity_unit: "個/本/玉",
   });
-  const [, , , setLists, , , shop, setShop] = useContext(VariableContext);
+  const [, , lists, setLists, , , shop, setShop] = useContext(VariableContext);
+  const [submitFlag, setSubmitFlag] = useState(false);
 
   const handleChange = (
     e:
@@ -41,6 +46,20 @@ export const Add = () => {
       quantity_unit: "個/本/玉",
     });
   };
+  //登録
+  useEffect(() => {
+    const getData = async () => {
+      const response = await fetch(fetchURL + "/lists", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lists.slice(-1)[0]),
+      }).then((e) => e.json());
+    };
+    if (submitFlag) {
+      getData();
+      setSubmitFlag(false);
+    }
+  }, [lists]);
 
   return (
     <>
@@ -75,7 +94,9 @@ export const Add = () => {
           <option value="L">L</option>
           <option value="Kg">Kg</option>
         </select>
-        <button type="submit">追加!</button>
+        <button type="submit" onClick={() => setSubmitFlag(true)}>
+          追加!
+        </button>
       </form>
     </>
   );

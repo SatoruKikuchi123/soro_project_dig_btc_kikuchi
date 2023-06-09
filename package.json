@@ -80,7 +80,7 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "start": "node scripts/start.js",
     "build": "npm install && node scripts/build.js",
     "test": "npm install",
@@ -90,10 +90,8 @@
     "back": "npx knex migrate:rollback --knexfile src/db/knexfile.js",
     "seed": "npx knex seed:run --knexfile src/db/knexfile.js",
     "seed-make": "npx knex seed:make --knexfile src/db/knexfile.js",
-    "tamaroh": "npm run start",
     "rend-build": "npm install && npm run test",
-    "rend-start": "npm run server",
-    "tama": "run-p server start"
+    "rend-start": "npm run server"
   },
   "eslintConfig": {
     "extends": [
