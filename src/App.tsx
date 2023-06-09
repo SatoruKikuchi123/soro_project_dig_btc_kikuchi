@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import List from "./components/List";
-import Login from "./components/Login";
 import { Add } from "./components/Add";
 import { ShopSort } from "./components/Shop";
 import { NewCreateShop } from "./components/NewCreateShop";
@@ -11,12 +10,6 @@ const fetchURL =
     : "http://localhost:3333";
 
 type props = {
-  // lists: {
-  //   id: number;
-  //   item: string;
-  //   quantity: string;
-  //   quantity_unit: string;
-  // }[];
   userData: {
     user_id: number;
     first_name: string;
@@ -84,9 +77,6 @@ export default function App() {
     getShop();
     getItems();
   }, []);
-  // console.log("lists", lists);
-  console.log("shopTable", shopTable);
-  // console.log("items", items);
 
   return (
     <>
@@ -119,31 +109,3 @@ export default function App() {
     </>
   );
 }
-
-// return (
-//   <>
-//     <VariableContext.Provider
-//       value={[
-//         newCreateFlag,
-//         setNewCreateFlag,
-//         postedArray,
-//         setPostedArray,
-//         tagArray,
-//         userData,
-//         setUserData,
-//       ]}
-//     >
-//       {userData[0]["user-id"] === 0 ? (
-//         <Login />
-//       ) : (
-//         <>
-//           <Header />
-//           <main>
-//             {newCreateFlag && <Modal />}
-//             <List />
-//           </main>
-//         </>
-//       )}
-//     </VariableContext.Provider>
-//   </>
-// );

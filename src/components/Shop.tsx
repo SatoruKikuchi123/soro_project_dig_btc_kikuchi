@@ -23,7 +23,6 @@ export const ShopSort = () => {
   const shopName = Array.from(
     new Set(shopTable.map((e: { shop_name: any }) => e.shop_name))
   );
-  // console.log("///////////////////////", shopName);
 
   return (
     <div>

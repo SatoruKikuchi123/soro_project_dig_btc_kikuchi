@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./List.css";
 import { VariableContext } from "../App";
 const fetchURL =
@@ -22,7 +22,6 @@ const List = () => {
   ] = useContext(VariableContext);
 
   const handleRemoveItem = (uniquKey: any) => {
-    console.log("??????????????", uniquKey);
     const getData = async () => {
       const response = await fetch(`${fetchURL}/lists/del/${uniquKey}`).then(
         (e) => e.json()
