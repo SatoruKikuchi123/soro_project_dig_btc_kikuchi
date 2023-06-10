@@ -85,7 +85,7 @@ $ cd 〜〜
 
 ## テスト
 
-1. 追加中
+server.js のテストを mocha&chai で実施
 
 ## 作者
 

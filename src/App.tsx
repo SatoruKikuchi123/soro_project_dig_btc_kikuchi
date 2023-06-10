@@ -50,7 +50,7 @@ export default function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const getLists = async () => {
+  const getLists = async () => {
       const ListsTable = await fetch(fetchURL + "/lists").then((e) => e.json());
       setLists(ListsTable);
     };
