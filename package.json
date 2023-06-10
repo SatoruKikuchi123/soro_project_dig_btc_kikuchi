@@ -101,11 +101,6 @@
     "rend-start": "npm run server",
     "server-test": "mocha test -w"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "eslintConfig": {
     "extends": [
       "react-app",
