@@ -1,4 +1,3 @@
-const setupServer = () => {
   const express = require("express");
   const app = express();
 
@@ -19,6 +18,7 @@ const setupServer = () => {
   app.use(bodyParser.json());
 
   app.use(express.static(path.join(__dirname, "./build")));
+
   app.get("/lists", async (req, res) => {
     const getData = await knex.select("*").from("lists");
     res.status(200).send(getData);
@@ -61,4 +61,3 @@ const setupServer = () => {
     res.status(200).send("OK");
   });
 };
-module.exports = { setupServer };
