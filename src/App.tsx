@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import List from "./components/List";
 import { Add } from "./components/Add";
-import { ShopSort } from "./components/Shop";
+import { ShopSort } from "./components/ShopSort";
 import { NewCreateShop } from "./components/NewCreateShop";
 const fetchURL =
   process.env.NODE_ENV === "production"
@@ -10,11 +10,6 @@ const fetchURL =
     : "http://localhost:3333";
 
 type props = {
-  userData: {
-    user_id: number;
-    first_name: string;
-    last_name: string;
-  }[];
   shop: {
     shop_name: string;
     corner_name: string;
@@ -26,8 +21,6 @@ type props = {
     setNewCreateFlag: Function,
     lists: any,
     setLists: Function,
-    userData: props["userData"],
-    setUserData: Function,
     shop: any,
     setShop: Function,
     shopTable: any,
@@ -47,14 +40,11 @@ export const VariableContext = React.createContext<props["props"]>([
   () => {},
   [],
   () => {},
-  [],
-  () => {},
 ]);
 
 export default function App() {
   const [newCreateFlag, setNewCreateFlag] = useState(false);
   const [lists, setLists] = useState([]);
-  const [userData, setUserData] = useState([]);
   const [shop, setShop] = useState([]);
   const [shopTable, setShopTable] = useState([]);
   const [items, setItems] = useState([]);
@@ -72,7 +62,6 @@ export default function App() {
       const itemsTable = await fetch(fetchURL + "/items").then((e) => e.json());
       setItems(itemsTable);
     };
-
     getLists();
     getShop();
     getItems();
@@ -86,8 +75,6 @@ export default function App() {
           setNewCreateFlag,
           lists,
           setLists,
-          userData,
-          setUserData,
           shop,
           setShop,
           shopTable,

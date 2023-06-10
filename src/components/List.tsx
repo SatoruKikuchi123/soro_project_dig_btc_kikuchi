@@ -7,26 +7,12 @@ const fetchURL =
     ? "https://kjk.onrender.com"
     : "http://localhost:3333";
 const List = () => {
-  const [
-    ,
-    ,
-    lists,
-    setLists,
-    userData,
-    setUserData,
-    shop,
-    setShop,
-    shopTable,
-    setShopTable,
-    items,
-    setItems,
-  ] = useContext(VariableContext);
+  const [, , lists, setLists, shop, , shopTable, , items, ,] =
+    useContext(VariableContext);
 
   const handleRemoveItem = (uniquKey: any) => {
     const getData = async () => {
-      const response = await fetch(`${fetchURL}/lists/del/${uniquKey}`).then(
-        (e) => e.json()
-      );
+      await fetch(`${fetchURL}/lists/del/${uniquKey}`).then((e) => e.json());
     };
     getData();
     const newLists = lists.filter(
@@ -109,7 +95,7 @@ const List = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const getData = async () => {
-      const response = await fetch(fetchURL + "/lists/put", {
+      await fetch(fetchURL + "/lists/put", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(lists),

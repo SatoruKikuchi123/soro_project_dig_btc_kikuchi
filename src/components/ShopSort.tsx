@@ -1,20 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { VariableContext } from "../App";
 export const ShopSort = () => {
-  const [
-    ,
-    setNewCreateFlag,
-    lists,
-    setLists,
-    userData,
-    setUserData,
-    shop,
-    setShop,
-    shopTable,
-    setShopTable,
-    items,
-    setItems,
-  ] = useContext(VariableContext);
+  const [, setNewCreateFlag, , , , setShop, shopTable] =
+    useContext(VariableContext);
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     setShop(value);

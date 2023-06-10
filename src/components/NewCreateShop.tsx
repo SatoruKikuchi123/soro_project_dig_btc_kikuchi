@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { VariableContext } from "../App";
 import "./NewCreateShop.css";
 const fetchURL =
@@ -7,20 +7,8 @@ const fetchURL =
     : "http://localhost:3333";
 
 export const NewCreateShop = () => {
-  const [
-    newCreateFlag,
-    setNewCreateFlag,
-    ,
-    ,
-    userData,
-    setUserData,
-    shop,
-    setShop,
-    shopTable,
-    setShopTable,
-    items,
-    setItems,
-  ] = useContext(VariableContext);
+  const [, setNewCreateFlag, , , , , , setShopTable] =
+    useContext(VariableContext);
 
   const [input, setInput] = useState("");
   const [tem, setTem] = useState([

@@ -80,10 +80,10 @@
     "nodemon": "^2.0.22"
   },
   "scripts": {
-    "server": "node server.js",
+    "server": "nodemon server.js",
     "start": "node scripts/start.js",
     "build": "npm install && node scripts/build.js && npm run migrate && npm run seed",
-    "test": "npm install",
+    "test": "react-scripts test",
     "migrate": "npx knex migrate:latest --knexfile src/db/knexfile.js",
     "migrate-down": "npx knex migrate:down --knexfile src/db/knexfile.js",
     "migrate-make": "npx knex migrate:make --knexfile src/db/knexfile.js",

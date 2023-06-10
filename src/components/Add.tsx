@@ -13,7 +13,7 @@ export const Add = () => {
     quantity: 1,
     quantity_unit: "個/本/玉",
   });
-  const [, , lists, setLists, , , shop, setShop] = useContext(VariableContext);
+  const [, , lists, setLists] = useContext(VariableContext);
   const [submitFlag, setSubmitFlag] = useState(false);
 
   const handleChange = (
@@ -50,7 +50,7 @@ export const Add = () => {
   //登録
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch(fetchURL + "/lists", {
+      await fetch(fetchURL + "/lists", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(lists.slice(-1)[0]),
