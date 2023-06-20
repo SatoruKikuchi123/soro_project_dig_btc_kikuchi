@@ -99,7 +99,8 @@
     "seed": "npx knex seed:run --knexfile src/db/knexfile.js",
     "seed-make": "npx knex seed:make --knexfile src/db/knexfile.js",
     "rend-start": "npm run server",
-    "server-test": "mocha test -w"
+    "server-test": "mocha test -w",
+    "build-aws": "node scripts/build.js"
   },
   "eslintConfig": {
     "extends": [
